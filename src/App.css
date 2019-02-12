@@ -13,6 +13,12 @@ a {
   margin-top: 6%;
 }
 
+
+
+
+
+
+
 .navbar-container {
   z-index: 1;
   position: fixed;
@@ -25,11 +31,6 @@ a {
   border-bottom: 2px solid #141414;
 }
 
-.navbar-logo {
-  width: 100%;
-  height: 100%;
-  transform: scale(0.65);
-}
 
 .navbar-logo-container {
   cursor: pointer;
@@ -44,7 +45,7 @@ a {
 
 .navbar-menu-option-container {
   cursor: pointer;
-  flex: 5;
+  flex: 10;
   display: flex;
   height: 100%;
   flex-direction: row;
@@ -122,38 +123,33 @@ a {
   margin-left: 30px;
 }
 
-.navbar-avatar-container {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-}
 
-.navbar-avatar {
-  min-width: 60px;
-  height: 60px;
-  background-color: #fff;
-  background-image: url('./icons/empty_avatar.jpg');
-  background-size: 60px 60px;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-}
 
-.navbar-avatar input {
-  cursor: pointer;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 .movie-card {
+  z-index: 2;
   width: 100%;
   height: 270px;
   margin: 5px;
-  background-color: #000000;
-  background-position: center center;
+  background: #000000 center center;
   background-size: cover;
   display: flex;
   flex: 1;
@@ -165,9 +161,9 @@ a {
   transition-delay: 0.15s;
 }
 
+
 .movie-card:hover {
   transform: scale(1.06);
-
 }
 
 .movie-card-container {
@@ -184,15 +180,13 @@ a {
 
 .movie-card-container:hover {
   opacity: 1;
-
 }
-
 
 .movie-card-text {
     font-weight: bold;
     text-shadow: 2px 2px #000;
     margin-left: 25px;
-    margin-top: 50%;
+    margin-top: 53%;
     display: flex;
     width: 80%;
     flex-direction: column;
@@ -209,21 +203,17 @@ a {
 }
 
 .movie-card-trailer {
-  font-size: 75%;
+  font-size: 77%;
 }
 
 .movie-card-label-price {
   color: #FFE300;
-  opacity: 1;
+  text-shadow: 0 0 20px #000;
 }
 
 .movie-card-label-price span {
-  font-size: 80%;
-  opacity: 1;
+  font-size: 85%;
 }
-
-
-
 
 .movie-card-footer {
   text-align: center;
@@ -290,6 +280,51 @@ a {
 
 
 
+
+
+.movie-detail {
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  min-height: 800px;
+  background: no-repeat center top;
+}
+
+.movie-detail .content {
+  position: relative;
+  z-index: 4;
+  width: 500px;
+  left: 10vw;
+  top: 10vw;
+}
+.movie-detail .content .logo {
+  max-width: 400px;
+  display: block;
+  position: relative;
+  left: -5px;
+}
+.movie-detail .content p {
+  width: 100%;
+}
+
+
+.movie-detail .overlay {
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #221f1f 0%, rgba(34, 31, 31, 0) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #221f1f 0%, rgba(34, 31, 31, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+  /* IE6-9 */
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 
 
 
@@ -368,6 +403,20 @@ a {
   font-size: 150%;
   font-weight: bold;
   margin: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  background-color: #202020;
+}
+.footer-info {
+  color: #FFE300;
+
+
 }
 
 

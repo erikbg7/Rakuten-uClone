@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Logo, Menu, Input, Avatar } from './index';
+import { Logo, Menu, Input } from './index';
 
 class NavBar extends Component {
   state = {
@@ -22,7 +22,6 @@ class NavBar extends Component {
           onCollapseInputHandler={() => this.props.onCollapseInputHandler()}
           onExpandInputHandler={() => this.props.onExpandInputHandler()}
         />
-        <Avatar />
       </div>
     );
   }
