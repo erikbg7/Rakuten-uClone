@@ -1,11 +1,9 @@
+const api = "https://gizmo.rakuten.tv/v3";
+const proxyURL = "https://cors-anywhere.herokuapp.com/";
 const defaultOptions= 'classification_id=5&device_identifier=web&locale=es&market_code=es';
 
 
-const api = "https://gizmo.rakuten.tv/v3";
-const proxyURL = "https://cors-anywhere.herokuapp.com/";
-
-
-////////////////////////////////////////////////////
+/////////////////////////CONSULTAS A LA API///////////////////////////
 
 export const getInTheater = () =>
   fetch(`${proxyURL}${api}/lists/estrenos-imprescindibles-en-taquilla?${defaultOptions}`)
@@ -30,21 +28,19 @@ export const getMostPopular = () =>
         .then(data => data.data.contents.data)
 
 export const getAwarded = () =>
-    fetch(`${proxyURL}${api}/lists/especial-premios-goya?${defaultOptions}`)
+    fetch(`${proxyURL}${api}/lists/si-te-perdiste?${defaultOptions}`)
         .then(res => res.json())
         .then(data => data.data.contents.data)
-////////////////////////////////////////////////////////////
 
+export const getSpecificMovie = movieID =>
+  fetch(`${proxyURL}${api}/movies/${movieID}?${defaultOptions}`)
+    .then(res => res.json())
+    .then(data => data.data)
 
-
-export const getMostPopular2 = () =>
-fetch(`${api2}/movie/popular?api_key=${apiKey}&${defaultOptions}`)
-  .then(res => res.json())
-  .then(data => data.results[Math.floor(Math.random() * (data.results.length - 1))])
-
-
-
-
+export const getMovieImage = movieID =>
+  fetch(`${proxyURL}${api}/movies/${movieID}?${defaultOptions}`)
+    .then(res => res.json())
+    .then(data => data.data.images)
 
 export const search = query =>
   fetch(`${proxyURL}${api}/movies/?query=${query}&${defaultOptions}`)

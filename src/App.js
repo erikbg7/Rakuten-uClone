@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { NavBar } from './components';
+import { Route, Redirect, Link } from 'react-router-dom';
+import {Footer, NavBar} from './components';
 import Home from './view/Home';
 import ListMovies from './view/ListMovies';
 import * as Movies from './api/Movies';
 
 import './App.css'
+import {MovieDetail} from "./view/MovieDetail";
 
 class RakutenCloneApp extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class RakutenCloneApp extends React.Component {
       viewedMovies: [],
       kidMovies: [],
       popularbuyMovies: [],
-      awardedMovies: []
+      otherMovies: []
     },
     favoriteList: [],
     fetchedMovies: [],
@@ -26,11 +27,10 @@ class RakutenCloneApp extends React.Component {
     Movies.getMostViewed().then(res => this.setState({ movies: { ...this.state.movies, viewedMovies: res } }));
     Movies.getForKids().then(res => this.setState({ movies: { ...this.state.movies, kidMovies: res } }));
     Movies.getMostPopular().then(res => this.setState({ movies: { ...this.state.movies, popularbuyMovies: res } }));
-    Movies.getAwarded().then(res => this.setState({ movies: { ...this.state.movies, awardedMovies: res } }));
-
-
+    Movies.getAwarded().then(res => this.setState({ movies: { ...this.state.movies, otherMovies: res } }));
   }
 
+  //Sirve para añadir films a la lista de favoritos
   toggleMovieInFavoriteList = movie => {
     const { favoriteList } = this.state;
     let index = favoriteList.map(l => l.id).indexOf(movie.id);
@@ -45,9 +45,11 @@ class RakutenCloneApp extends React.Component {
     }
   }
 
+  //Sirve para hacer la búsqueda de films en la API
   doSearch = query => {
     Movies.search(query).then(res => this.setState({ fetchedMovies: res }));
   }
+
 
   render() {
     return (
@@ -64,13 +66,14 @@ class RakutenCloneApp extends React.Component {
               movies={this.state.movies}
               favoriteList={this.state.favoriteList}
               onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
+
             />
         )} />
         <Route exact path='/favorites' render={() => (
           !this.state.isInputClosed && this.state.fetchedMovies.length
           ? <Redirect to="/search" />
           : <ListMovies
-              title="My List"
+              title="Tus favoritos:"
               movies={this.state.favoriteList}
               favoriteList={this.state.favoriteList}
               onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
@@ -84,21 +87,21 @@ class RakutenCloneApp extends React.Component {
             onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
           />
         )} />
-        <Route path='/movie/:movieID' render={() => (
-          !this.state.isInputClosed && this.state.fetchedMovies.length
-            ? <Redirect to="/" />
-            : <Home
-              movies={this.state.movies}
-              movieJumbotron={this.state.movieJumbotron}
-
-
-
-              favoriteList={this.state.favoriteList}
-              onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
-            />
-        )} />
+        <Route path='/movie/:movieID' component={Child} />
+        <Footer/>
       </div>
     )
   }
 }
+
+// Sirve para acceder al parámetro de Route -> /movie/:movieID
+// y cargar la información.
+const Child = ({ match }) => (
+  <div>
+    <MovieDetail movie={match.params.movieID}
+    />
+  </div>
+);
+
+
 export default RakutenCloneApp;

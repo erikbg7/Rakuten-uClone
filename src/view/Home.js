@@ -1,9 +1,5 @@
 import React from 'react';
 import { MovieCard, Jumbotron, Carousel } from '../components';
-import {Footer} from "../components/Footer";
-
-
-
 
 
 const Home = ({ favoriteList, onAddListPressed, movies }) => (
@@ -65,8 +61,8 @@ const Home = ({ favoriteList, onAddListPressed, movies }) => (
       ))}
     </Carousel>
 
-    <Carousel title="Especial premios Goya">
-      {movies.awardedMovies.map(movie => (
+    <Carousel title="Si te perdiste...">
+      {movies.otherMovies.map(movie => (
         <MovieCard
           key={movie.id}
           movie={movie}
@@ -78,8 +74,6 @@ const Home = ({ favoriteList, onAddListPressed, movies }) => (
         />
       ))}
     </Carousel>
-    <Footer/>
-
   </div>
 );
 
