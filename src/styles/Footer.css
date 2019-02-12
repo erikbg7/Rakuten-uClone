@@ -1,0 +1,25 @@
+
+.footer {
+    display: flex;
+    margin-top: 5%;
+    background-color: #202020;
+}
+
+.footer-rakuten-title {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-size: 200%;
+    font-weight: bold;
+    color: #F3F3F3;
+}
+
+.footer-rakuten-text {
+    text-align: center;
+    margin-right: 24%;
+    margin-left: 24%;
+    margin-bottom: 5%;
+    font-size: 110%;
+    color: #909090;
+    font-family: Roboto-Regular, Arial, sans-serif;
+}
