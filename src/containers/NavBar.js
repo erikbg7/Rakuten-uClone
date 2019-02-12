@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Logo, Menu, Input } from './index';
+import { Logo, Menu, Input } from '../components/index';
 
 class NavBar extends Component {
   state = {

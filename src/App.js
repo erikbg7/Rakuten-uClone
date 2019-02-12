@@ -2,10 +2,18 @@ import React from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
 import {Footer, NavBar} from './components';
 import Home from './view/Home';
-import ListMovies from './view/ListMovies';
-import * as Movies from './api/Movies';
+import MoviesList from './view/MoviesList';
+import * as MoviesService from './api/MoviesService';
 
-import './App.css'
+import './styles/App.css';
+import './styles/Footer.css';
+import './styles/Home.css';
+import './styles/NavBar.css';
+import './styles/MovieDetail.css';
+
+
+
+
 import {MovieDetail} from "./view/MovieDetail";
 
 class RakutenCloneApp extends React.Component {
@@ -23,11 +31,11 @@ class RakutenCloneApp extends React.Component {
   }
 
   componentDidMount() {
-    Movies.getInTheater().then(res => this.setState({ movies: { ...this.state.movies, lastestMovies: res } }));
-    Movies.getMostViewed().then(res => this.setState({ movies: { ...this.state.movies, viewedMovies: res } }));
-    Movies.getForKids().then(res => this.setState({ movies: { ...this.state.movies, kidMovies: res } }));
-    Movies.getMostPopular().then(res => this.setState({ movies: { ...this.state.movies, popularbuyMovies: res } }));
-    Movies.getAwarded().then(res => this.setState({ movies: { ...this.state.movies, otherMovies: res } }));
+    MoviesService.getInTheater().then(res => this.setState({ movies: { ...this.state.movies, lastestMovies: res } }));
+    MoviesService.getMostViewed().then(res => this.setState({ movies: { ...this.state.movies, viewedMovies: res } }));
+    MoviesService.getForKids().then(res => this.setState({ movies: { ...this.state.movies, kidMovies: res } }));
+    MoviesService.getMostPopular().then(res => this.setState({ movies: { ...this.state.movies, popularbuyMovies: res } }));
+    MoviesService.getAwarded().then(res => this.setState({ movies: { ...this.state.movies, otherMovies: res } }));
   }
 
   //Sirve para añadir films a la lista de favoritos
@@ -47,7 +55,7 @@ class RakutenCloneApp extends React.Component {
 
   //Sirve para hacer la búsqueda de films en la API
   doSearch = query => {
-    Movies.search(query).then(res => this.setState({ fetchedMovies: res }));
+    MoviesService.search(query).then(res => this.setState({ fetchedMovies: res }));
   }
 
 
@@ -72,7 +80,7 @@ class RakutenCloneApp extends React.Component {
         <Route exact path='/favorites' render={() => (
           !this.state.isInputClosed && this.state.fetchedMovies.length
           ? <Redirect to="/search" />
-          : <ListMovies
+          : <MoviesList
               title="Tus favoritos:"
               movies={this.state.favoriteList}
               favoriteList={this.state.favoriteList}
@@ -80,14 +88,14 @@ class RakutenCloneApp extends React.Component {
             />
         )} />
         <Route path='/search' render={() => (
-          <ListMovies
+          <MoviesList
             title="Resultados de la búsqueda"
             movies={this.state.fetchedMovies}
             favoriteList={this.state.favoriteList}
             onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
           />
         )} />
-        <Route path='/movie/:movieID' component={Child} />
+        <Route path='/movie/:movieID' component={Child}/>
         <Footer/>
       </div>
     )

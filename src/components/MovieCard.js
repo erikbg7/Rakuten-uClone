@@ -3,6 +3,7 @@ import { Button } from './index';
 import {Link} from "react-router-dom";
 
 
+
 const MovieCard = ({ movie, favoriteList, onAddListPressed, img, score, votes}) => (
   <div className="movie-view">
     <div

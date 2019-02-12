@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as Movies from "../api/Movies";
+import * as Movies from "../api/MoviesService";
 
 
 class MovieDetail extends Component {
@@ -20,8 +20,8 @@ class MovieDetail extends Component {
              backgroundImage: `url(${this.state.images.snapshot})`,
              backgroundSize: "cover"
            }}>
-        <div className="content">
-          <h2>{this.state.movieDetail.numerical_id}</h2>
+        <div className="movie-detail-info">
+          <h2>{this.state.movieDetail.title}</h2>
           <p>{this.state.movieDetail.plot}</p>
         </div>
         <div className="overlay"></div>

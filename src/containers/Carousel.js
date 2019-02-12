@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import {Menu} from "./Menu";
 
 class Carousel extends Component {
   state = {
@@ -21,9 +20,6 @@ class Carousel extends Component {
         </div>
         <div className="carousel-content">
           <ItemsCarousel
-            //
-            page={this.state.page}
-            changeMenuMarker={(page) => this.changeMenuMarkerHandler(page)}
             // Placeholder configurations
             enablePlaceholder
             numberOfPlaceholderItems={5}
