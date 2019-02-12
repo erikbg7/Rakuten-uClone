@@ -12,8 +12,6 @@ import './styles/NavBar.css';
 import './styles/MovieDetail.css';
 
 
-
-
 import {MovieDetail} from "./view/MovieDetail";
 
 class RakutenCloneApp extends React.Component {
@@ -95,7 +93,7 @@ class RakutenCloneApp extends React.Component {
             onAddListPressed={movie => this.toggleMovieInFavoriteList(movie)}
           />
         )} />
-        <Route path='/movie/:movieID' component={Child}/>
+        <Route path='/movie/:movieID' component={Child} />
         <Footer/>
       </div>
     )
