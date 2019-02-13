@@ -10,7 +10,7 @@ Por otra parte tenemos MovieDetail, que nos muestra un summary del movie que eli
 
 
 ## HOME:
-<img src="Rakuten_Home.PNG" alt="home">
+<img src="Rakuten_Home.png" alt="home">
 
 ## BUSQUEDAS:
 <img src="Rakuten_search.PNG" alt="search">
